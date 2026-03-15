@@ -1,5 +1,7 @@
 # DNCL
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 DNCL (Common Test Procedure Description Standard Language) is a language used by the National Center for University Entrance Examinations in Japan for describing test procedures in the "Information Fundamentals" subject.
 
 ## Features
