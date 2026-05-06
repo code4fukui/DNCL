@@ -1,130 +1,132 @@
-# 共通テスト手順記述標準言語 (DNCL) の説明
+# Description of the Common Test Procedure Description Standard Language (DNCL)
 
-- 独立行政法人大学入試センター
-- 2022年1月
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
 
-高等学校におけるアルゴリズムやプログラムに関する教育では，採用されるプログラミング言語は多様で，プログラミングの実習時間も異なります。大学入試センターではこのような事情を考慮し，「情報関係基礎」の出題にあたり，共通テスト用の手順記述言語 (DNCL) を使用します。
+- National Center for University Entrance Examinations
+- January 2022
 
-以下，参考のために DNCL の基本を説明します。しかしながら，問題文の記述を簡潔にするなどの理由で，この説明文書の記述内容に従わない形式で出題することもあります。したがって，「情報関係基礎」の受験に際しては，当該問題文の中の説明や指示に注意し，それらに沿って解答してください。
+In high school education concerning algorithms and programming, a variety of programming languages are adopted, and the amount of practical programming time also varies. Taking these circumstances into consideration, the National Center for University Entrance Examinations uses the procedure description language for the Common Test (DNCL) when setting questions for "Information-Related Basics".
 
-## 1 変数と値
+Below, the basics of DNCL are explained for reference. However, for reasons such as simplifying the problem text, questions may sometimes be presented in a format that does not adhere to the descriptions in this document. Therefore, when taking the "Information-Related Basics" exam, please pay attention to the explanations and instructions within the specific problem text and answer accordingly.
 
-変数名は，英字で始まる英数字と『 _ 』の並びです。
+## 1 Variables and Values
 
-- 例: kosu, kosu_gokei, Tokuten
+A variable name is a sequence of alphanumeric characters and "_" that begins with a letter.
 
-特に指示がない限り，小文字で始まる変数は通常の変数を表し，大文字で始まる変数は配列を表します。また，すべて大文字の変数は実行中に変化しない値を表します。
+- Example: kosu, kosu_gokei, Tokuten
 
-配列の要素は，要素の番号を添字で指定します。2次元以上の場合は，添字を『, 』で区切ります。たとえば，(1次元の) 配列 Tokuten や 2次元配列 Gyoretu の要素は Tokuten[2] や Gyoretu[3，2] のように表します。
+Unless otherwise specified, a variable starting with a lowercase letter represents a normal variable, and a variable starting with an uppercase letter represents an array. In addition, a variable in all uppercase letters represents a value that does not change during execution.
 
-添字の値は0以上の整数ですが，問題によっては1以上の添字のみを扱います。
+An element of an array is specified by its element number using an index. For two or more dimensions, indices are separated by ",". For example, elements of the (one-dimensional) array Tokuten and the two-dimensional array Gyoretu are represented as Tokuten[2] and Gyoretu[3，2].
 
-特に断らない限り，数値は10進法で表します。文字列は，文字の並びを 『 「 』と『 」 』 ，または，『 " 』と『 " 』でくくって表します。
+The value of an index is an integer of 0 or greater, but depending on the problem, only indices of 1 or greater are handled.
 
-- 例: 100
-- 例: 99.999
-- 例: 「見つかりました」
-- 例: "It was found."
+Unless otherwise specified, numbers are represented in decimal. A string is represented by enclosing a sequence of characters in "「" and "」", or in "\"" and "\"".
 
-## 2 表示文
+- Example: 100
+- Example: 99.999
+- Example: 「見つかりました」
+- Example: "It was found."
 
-表示文で数値や文字列や変数の値を表示します。表示文では，複数の値を表示する場合は『と』で区切って並べ，最後に『を表示する』と書きます。
+## 2 Display Statement
 
-- 例:「整いました」を表示する （「整いました」と表示されます。）
-- 例: kosu と「個見つかった」を表示する （kosu が 3 のとき，「3 個見つかった」と表示されます。）
-- 例: "(" と x と "，" と y と ")" を表示する （x が 5，y が −1 のとき，「(5，-1)」と表示されます。）
+A display statement displays the values of numbers, strings, and variables. In a display statement, when displaying multiple values, they are listed separated by 『と』, and 『を表示する』 is written at the end.
 
-## 3 代入文
+- Example: 「整いました」を表示する (「整いました」 is displayed.)
+- Example: kosu と「個見つかった」を表示する (When kosu is 3, 「3 個見つかった」 is displayed.)
+- Example: "(" と x と "，" と y と ")" を表示する (When x is 5 and y is −1, 「(5，-1)」 is displayed.)
 
-代入文は変数に値を設定します。『←』の左辺に変数または添字付きの配列を，右辺に代入する値を書きます。また，配列の各要素に同じ値をまとめて代入することや，他の配列の内容に置き換えることもできます。
+## 3 Assignment Statements
 
-- 例: kosu ← 3
-- 例: Tokuten[4] ← 100
-- 例: Tokuten のすべての要素に 0 を代入する
-- 例: Tokuten ← {87, 45, 72, 100}
+An assignment statement sets a value to a variable. Write the variable or subscripted array on the left side of "←", and the value to be assigned on the right side. Also, it is possible to assign the same value to all elements of an array at once, or to replace them with the contents of another array.
 
-複数の代入文を，『， 』で区切りながら，横に並べることができます。この場合は，代入文は左から順に実行されます。
+- Example: kosu ← 3
+- Example: Tokuten[4] ← 100
+- Example: Tokuten のすべての要素に 0 を代入する
+- Example: Tokuten ← {87, 45, 72, 100}
 
-- 例: kosu_gokei ← kosu，tokuten ← kosu × (kosu ＋ 1)
+Multiple assignment statements can be placed side by side, separated by "， ". In this case, the assignment statements are executed in order from the left.
 
-同じ変数に対する加算や減算を伴う代入（インクリメントやデクリメント）は，『～を～増やす』や『～を～減らす』によって表すこともできます。
+- Example: kosu_gokei ← kosu，tokuten ← kosu × (kosu ＋ 1)
 
-- 例:『kosu を 1 増やす』 は 『kosu ← kosu ＋ 1』 と同じです。
-- 例:『saihu を syuppi 減らす』は 『saihu ← saihu － syuppi』と同じです。
+Assignments involving addition or subtraction to the same variable (increment or decrement) can also be expressed by "～を～増やす" or "～を～減らす".
 
-外部から入力された値を代入するために，次のように記述することもあります。
+- Example: "kosu を 1 増やす" is the same as "kosu ← kosu ＋ 1".
+- Example: "saihu を syuppi 減らす" is the same as "saihu ← saihu － syuppi".
 
-- 例: x ←【外部からの入力】
+To assign a value input from the outside, it may also be written as follows.
 
-## 4 演算
+- Example: x ←【外部からの入力】
 
-この節では，算術演算と比較演算，そして論理演算について説明します。比較演算やそれを組み合わせる論理演算は，条件分岐文（5.1 節）や条件繰返し文（5.2 節）の 〈条件〉 で使うことができます。
+## 4 Operations
 
-### 4.1 算術演算
+This section explains arithmetic operations, comparison operations, and logical operations. Comparison operations and logical operations that combine them can be used in the 〈Condition〉 of conditional branching statements (Section 5.1) and conditional repetition statements (Section 5.2).
 
-加減乗除の四則演算は，『＋』，『－』，『×』，『 / 』で指定します。
+### 4.1 Arithmetic Operations
 
-整数の除算では，商を『÷』で，余りを『％』で計算することができます。
+The four basic arithmetic operations of addition, subtraction, multiplication, and division are specified using '＋', '－', '×', and ' / '.
 
-- 例: atai ← 7 / 2 　 （atai には 3.5 が代入されます。）
-- 例: syo ← 7÷ 2 　 （syo には 3 が代入されます。）
-- 例: amari ← 10％ 3 （amari には 1 が代入されます。）
+In integer division, the quotient can be calculated using '÷' and the remainder using '％'.
 
-複数の演算子を使った式の計算では，基本的に左側の演算子が先に計算されますが，『×』，『 / 』，『÷』，『％』は， 『＋』，『－』より先に計算されます。また，丸括弧『(』と『)』で式をくくって，演算の順序を明示することができます。
+- Example: atai ← 7 / 2 (3.5 is assigned to atai.)
+- Example: syo ← 7÷ 2 (3 is assigned to syo.)
+- Example: amari ← 10％ 3 (1 is assigned to amari.)
 
-- 例: sogaku ← ne1－ ne2－ ne3 は，sogaku ← (ne1－ ne2)－ ne3 と同じです。
-- 例: kosu ← 1＋ kazu÷ 3 は，kosu ← 1＋ (kazu÷ 3) と同じです。
-- 例: heikin ← (hidari＋ migi)÷ 2 は，heikin ← hidari＋ migi÷ 2 と異なります。
+In the calculation of expressions using multiple operators, the operator on the left is basically calculated first, but '×', ' / ', '÷', and '％' are calculated before '＋' and '－'. Additionally, you can explicitly specify the order of operations by enclosing the expression in parentheses '(' and ')'.
 
-### 4.2 比較演算
+- Example: sogaku ← ne1－ ne2－ ne3 is the same as sogaku ← (ne1－ ne2)－ ne3.
+- Example: kosu ← 1＋ kazu÷ 3 is the same as kosu ← 1＋ (kazu÷ 3).
+- Example: heikin ← (hidari＋ migi)÷ 2 is different from heikin ← hidari＋ migi÷ 2.
 
-数値の比較演算は，『＝』，『≠』（あるいは『 ≠』），『＞』，『≧』，『≦』，『＜』で指定します。演算結果は，真か偽の値となります。
+### 4.2 Comparison Operations
 
-- 例: kosu ＞ 3 （kosu が 3 より大きければ真となります。）
-- 例: ninzu× 2 ≦ 8 （ninzu の 2 倍が 8 以下であれば真となります。）
-- 例: kaisu ≠ 0 （kaisu が 0 でなければ真となります。）
+Comparison operations for numeric values are specified using '＝', '≠' (or ' ≠'), '＞', '≧', '≦', and '＜'. The result of the operation is a true or false value.
 
-文字列の比較演算は，『＝』，『≠』（あるいは『 ≠』）を利用することができます。『＝』は，左辺と右辺が同じ文字列の場合に真となり，それ以外の場合は偽となります。『≠』（あるいは『 ≠』）は，左辺と右辺が異なる文字列の場合に真となり，それ以外の場合（同じ文字列の場合）は偽となります。
+- Example: kosu ＞ 3 (Evaluates to true if kosu is greater than 3.)
+- Example: ninzu× 2 ≦ 8 (Evaluates to true if 2 times ninzu is less than or equal to 8.)
+- Example: kaisu ≠ 0 (Evaluates to true if kaisu is not equal to 0.)
 
-- 例: 「あいうえお」＝「あいうえお」 （真となります。）
-- 例: 「あいうえお」＝「あいう」 （偽となります。）
-- 例: "ABC"＝"ABC" （真となります。）
-- 例: "ABC"＝"abc" （偽となります。）
-- 例: 「あいうえお」≠「あいうえお」 （偽となります。）
-- 例: 「あいうえお」≠「あいう」 （真となります。）
-- 例: "ABC"≠"ABC" （偽となります。）
-- 例: "ABC"≠"abc" （真となります。）
+For string comparison operations, '＝' and '≠' (or ' ≠') can be used. '＝' evaluates to true if the left and right sides are the same string, and false otherwise. '≠' (or ' ≠') evaluates to true if the left and right sides are different strings, and false otherwise (if they are the same string).
 
-### 4.3 論理演算
+- Example: 「あいうえお」＝「あいうえお」 (Evaluates to true.)
+- Example: 「あいうえお」＝「あいう」 (Evaluates to false.)
+- Example: "ABC"＝"ABC" (Evaluates to true.)
+- Example: "ABC"＝"abc" (Evaluates to false.)
+- Example: 「あいうえお」≠「あいうえお」 (Evaluates to false.)
+- Example: 「あいうえお」≠「あいう」 (Evaluates to true.)
+- Example: "ABC"≠"ABC" (Evaluates to false.)
+- Example: "ABC"≠"abc" (Evaluates to true.)
 
-論理演算は，真か偽を返す式に対する演算で，『かつ』，『または』，『でない』の演算子で指定します。論理演算子に優先順位はなく，左側の論理演算が先に実行されますが，丸括弧『(』と『)』で，演算の順序を指定することができます。
+### 4.3 Logical Operations
 
-『〈式 1〉 かつ 〈式 2〉』は，〈式 1〉と〈式 2〉の結果がいずれも真である場合に真となり，それ以外の場合は偽となります。『〈式 1〉 または 〈式 2〉』は，〈式 1〉と〈式 2〉の結果のどちらかが真である場合に真となり，それ以外の場合は偽となります。『 〈式〉 でない』は， 〈式〉 の結果が真である場合に偽となり，偽の場合は真となります。
+Logical operations are operations on expressions that return true or false, and are specified using the 'かつ', 'または', and 'でない' operators. There is no precedence among logical operators, and the logical operation on the left is executed first, but you can specify the order of operations using parentheses '(' and ')'.
 
-- 例: kosu ≧ 12 かつ kosu ≦ 27 （kosu が 12 以上 27 以下なら真となります。）
-- 例: kosu％ 2 ＝ 0 または kosu ＜ 0 （kosu が偶数か負の値なら真となります。）
-- 例: kosu ＞ 75 でない （kosu が 75 より大きくなければ真となります。）
-- 例: kosu ＞ 12 かつ kosu ＜ 27 でない は，(kosu ＞ 12 かつ kosu ＜ 27) でない と同じです。（左側の論理演算子が先に実行されるため。）
-- 例: kosu ＞ 12 かつ kosu ＜ 27 でない は，kosu ＞ 12 かつ (kosu ＜ 27 でない) と異なります。
+'〈Expression 1〉 かつ 〈Expression 2〉' evaluates to true if the results of both 〈Expression 1〉 and 〈Expression 2〉 are true, and false otherwise. '〈Expression 1〉 または 〈Expression 2〉' evaluates to true if the result of either 〈Expression 1〉 or 〈Expression 2〉 is true, and false otherwise. '〈Expression〉 でない' evaluates to false if the result of 〈Expression〉 is true, and true if it is false.
 
-## 5 制御文
+- Example: kosu ≧ 12 かつ kosu ≦ 27 (Evaluates to true if kosu is greater than or equal to 12 and less than or equal to 27.)
+- Example: kosu％ 2 ＝ 0 または kosu ＜ 0 (Evaluates to true if kosu is an even number or a negative value.)
+- Example: kosu ＞ 75 でない (Evaluates to true if kosu is not greater than 75.)
+- Example: kosu ＞ 12 かつ kosu ＜ 27 でない is the same as (kosu ＞ 12 かつ kosu ＜ 27) でない. (Because the logical operator on the left is executed first.)
+- Example: kosu ＞ 12 かつ kosu ＜ 27 でない is different from kosu ＞ 12 かつ (kosu ＜ 27 でない).
 
-条件分岐文（5.1 節）や条件繰返し文（5.2 節），順次繰返し文（5.3 節）をまとめて制御文と呼びます。制御文の中の 〈処理〉 として，表示文（2 節），代入文（3 節），値を返さない関数（6.2 節），条件分岐文，順次繰返し文，条件繰返し文を，一つ以上並べて使うことができます。また，条件分岐文や条件繰返し文の中の〈条件〉として，比較演算（4.2 節）と論理演算（4.3 節）を使用することができます。
+## 5 Control Statements
 
-### 5.1 条件分岐文
+Conditional branching statements (Section 5.1), conditional repetition statements (Section 5.2), and sequential repetition statements (Section 5.3) are collectively called control statements. As the `<processing>` within a control statement, one or more display statements (Section 2), assignment statements (Section 3), functions that do not return a value (Section 6.2), conditional branching statements, sequential repetition statements, and conditional repetition statements can be used in sequence. Also, as the `<condition>` within conditional branching statements and conditional repetition statements, comparison operations (Section 4.2) and logical operations (Section 4.3) can be used.
 
-条件分岐文は， 〈条件〉 が成り立つかどうかによって，実行する処理を切り替えます。
+### 5.1 Conditional Branching Statements
 
-〈条件〉が成り立つときにある処理を実行し，〈条件〉が成り立たないときに実行する処理がない場合は，次のように『ならば』で指定します。
+Conditional branching statements switch the processing to be executed depending on whether the `<condition>` is satisfied.
 
-《一般形》
+When a certain processing is to be executed if the `<condition>` is satisfied, and there is no processing to execute if the `<condition>` is not satisfied, it is specified with "ならば" as follows.
+
+*General Form*
 ```
 もし 〈条件〉 ならば
    〈処理〉
 を実行する
 ```
 
-例:
+*Example:*
 ```
 もし x ＜ 3 ならば
   x ← x＋ 1
@@ -132,21 +134,21 @@
 を実行する
 ```
 
-〈処理〉が 1 行しかない場合は，次のように全体を 1 行で書くこともできます。
+If the `<processing>` is only one line, the whole statement can also be written on a single line as follows.
 
-《一般形》
+*General Form*
 ```
 もし 〈条件〉 ならば 〈処理〉 を実行する
 ```
 
-例:
+*Example:*
 ```
 もし x ＜ 3 ならば x ← x＋ 1 を実行する
 ```
 
-〈条件〉が成り立つときにある処理を実行し，〈条件〉が成り立たないときに別の処理を実行する場合は，次のように『ならば』と『そうでなければ』を組み合わせて指定します。
+When a certain processing is to be executed if the `<condition>` is satisfied, and a different processing is to be executed if the `<condition>` is not satisfied, it is specified by combining "ならば" and "そうでなければ" as follows.
 
-《一般形》
+*General Form*
 ```
 もし 〈条件〉 ならば
   〈処理 1〉
@@ -155,7 +157,7 @@
 を実行する
 ```
 
-例:
+*Example:*
 ```
 もし x ＜ 3 ならば
   x ← x＋ 1
@@ -164,23 +166,23 @@
 を実行する
 ```
 
-改行位置によって実行結果が変わらないため，各処理が 1 行で書ける場合には，次のように書くこともあります。
+Since the execution result does not change depending on the line break position, when each processing can be written on a single line, it may also be written as follows.
 
-《一般形》
+*General Form*
 ```
 もし 〈条件〉 ならば 〈処理 1〉 を実行し，
 そうでなければ 〈処理 2〉 を実行する
 ```
 
-例:
+*Example:*
 ```
 もし x ＜ 3 ならば x ← x＋ 1 を実行し，
 そうでなければ x ← x－ 1 を実行する
 ```
 
-条件分岐の中で複数の条件で実行する処理を切り替えたい場合は，次のように『ならば』と『そうでなければ』の間に『そうでなくもし』を使って条件を追加します。
+If you want to switch the processing to be executed based on multiple conditions within a conditional branch, conditions are added using "そうでなくもし" between "ならば" and "そうでなければ" as follows.
 
-《一般形》
+*General Form*
 ```
 もし 〈条件 1〉 ならば
   〈処理 1〉
@@ -191,7 +193,7 @@
 を実行する
 ```
 
-例:
+*Example:*
 ```
 もし x ＝ 3 ならば
   x ← x＋ 1
@@ -202,40 +204,40 @@
 を実行する
 ```
 
-改行位置によって実行結果が変わらないため，各処理が 1 行で書ける場合には，次のように書くこともあります。
+Since the execution result does not change depending on the line break position, when each processing can be written on a single line, it may also be written as follows.
 
-《一般形》
+*General Form*
 ```
 もし 〈条件 1〉 ならば 〈処理 1〉 を実行し，
 そうでなくもし 〈条件 2〉 ならば 〈処理 2〉 を実行し，
 そうでなければ 〈処理 3〉 を実行する
 ```
 
-例:
+*Example:*
 ```
 もし x ＝ 3 ならば x ← x＋ 1 を実行し，
 そうでなくもし y ＞ 2 ならば y ← y＋ 1 を実行し，
 そうでなければ y ← y－ 1 を実行する
 ```
 
-### 5.2 条件繰返し文
+### 5.2 Conditional Repetition Statements
 
-条件繰返し文には，「前判定」と「後判定」の 2 種類があります。
+There are two types of conditional repetition statements: "pre-test" and "post-test".
 
-#### 5.2.1 前判定
+#### 5.2.1 Pre-test
 
-〈条件〉 が成り立つ間， 〈処理〉 を繰り返し実行します。
+While the `<condition>` is satisfied, the `<processing>` is repeatedly executed.
 
-〈処理〉を実行する前に 〈条件〉が成り立つかどうか判定されるため，〈処理〉が 1 回も実行されないことがあります。
+Because it is evaluated whether the `<condition>` is satisfied before executing the `<processing>`, the `<processing>` may not be executed even once.
 
-《一般形》
+*General Form*
 ```
 〈条件〉 の間，
   〈処理〉
 を繰り返す
 ```
 
-例:
+*Example:*
 ```
 x ＜ 10 の間，
   gokei ← gokei＋ x
@@ -243,20 +245,20 @@ x ＜ 10 の間，
 を繰り返す
 ```
 
-#### 5.2.2 後判定
+#### 5.2.2 Post-test
 
-〈条件〉 が成り立つまで， 〈処理〉 を繰り返し実行します。
+The `<processing>` is repeatedly executed until the `<condition>` is satisfied.
 
-〈処理〉を実行した後に 〈条件〉が成り立つかどうか判定されるため，〈処理〉は少なくとも 1 回は実行されます。
+Because it is evaluated whether the `<condition>` is satisfied after executing the `<processing>`, the `<processing>` is executed at least once.
 
-《一般形》
+*General Form*
 ```
 繰り返し，
   〈処理〉
 を， 〈条件〉 になるまで実行する
 ```
 
-例:
+*Example:*
 ```
 繰り返し，
   gokei ← gokei＋ x
@@ -264,81 +266,81 @@ x ＜ 10 の間，
 を，x ≧ 10 になるまで実行する
 ```
 
-#### 5.3 順次繰返し文
+#### 5.3 Sequential Repetition Statements
 
-順次繰返し文は， 〈変数〉 の値を増やしながら， 〈処理〉 を繰返し実行します。
+Sequential repetition statements repeatedly execute the `<processing>` while increasing the value of the `<variable>`.
 
-《一般形》
+*General Form*
 ```
 〈変数〉 を 〈初期値〉 から 〈終了値〉 まで 〈差分〉 ずつ増やしながら，
   〈処理〉
 を繰り返す
 ```
 
-順次繰り返し文は，以下の手順で実行されます。
-1. 〈変数〉 に 〈初期値〉 が代入されます。
-2. 〈変数〉 の値が 〈終了値〉 よりも大きければ，繰り返しを終了します。
-3. 〈処理〉 を実行し， 〈変数〉 の値に 〈差分〉 を加え，手順 2 に戻ります。
+Sequential repetition statements are executed in the following steps:
+1. The `<initial value>` is assigned to the `<variable>`.
+2. If the value of the `<variable>` is greater than the `<end value>`, the repetition terminates.
+3. The `<processing>` is executed, the `<step>` is added to the value of the `<variable>`, and the process returns to step 2.
 
-例:
+*Example:*
 ```
 x を 1 から 10 まで 1 ずつ増やしながら，
   gokei ← gokei＋ x
 を繰り返す
 ```
 
-『増やしながら』を『減らしながら』にすると，〈変数〉の値を〈初期値〉から 〈差分〉ずつ減らしながら，その値が 〈終了値〉 よりも小さくなるまで， 〈処理〉 を繰り返し実行します。
+If "増やしながら" is changed to "減らしながら", the `<processing>` is repeatedly executed while decreasing the value of the `<variable>` from the `<initial value>` by the `<step>`, until the value becomes smaller than the `<end value>`.
 
-例:
+*Example:*
 ```
 x を 10 から 1 まで 1 ずつ減らしながら，
   gokei ← gokei＋ x
 を繰り返す
 ```
 
-## 6 用意された関数の呼び出し
+## 6 Calling Provided Functions
 
-あらかじめ用意された関数には，値を返すものと値を返さないものがあります。関数の動作は，問題文の中で定義されます。
+Among the functions provided in advance, there are those that return a value and those that do not return a value. The behavior of the functions is defined in the problem statement.
 
-### 6.1 値を返す関数
+### 6.1 Functions that Return a Value
 
-問題文の中で
+In the problem statement,
 
-- 指定された値の二乗の値を返す関数「二乗」を用意する
-- 値 m の n 乗の値を返す関数「べき乗 (m，n)」を用意する
-- 値 m 以上値 n 以下の整数をランダムに一つ返す関数「乱数 (m，n)」を用意する
-- 値 n が奇数のとき真を返し，そうでないとき偽を返す関数「奇数 (n)」を用意する
+- Provide a function 「二乗」 that returns the square of the specified value
+- Provide a function 「べき乗 (m，n)」 that returns the value of m raised to the power of n
+- Provide a function 「乱数 (m，n)」 that randomly returns one integer greater than or equal to m and less than or equal to n
+- Provide a function 「奇数 (n)」 that returns true when the value n is an odd number, and returns false otherwise
 
-のように定義された関数を，表示文 (2 節)，代入文 (3 節)，算術演算（4.1 節），比較演算（4.2 節），あるいは論理演算（4.3 節）の中で使うことができます。関数を呼び出すときは，関数名に続き，『(』と『)』の間に引数を書きます。複数の引数を指定する場合は，『，』で区切ります。
+functions defined as above can be used within display statements (Section 2), assignment statements (Section 3), arithmetic operations (Section 4.1), comparison operations (Section 4.2), or logical operations (Section 4.3). When calling a function, write the arguments between 『(』 and 『)』 following the function name. When specifying multiple arguments, separate them with 『，』.
 
-- 例: y ← 二乗 (x) （y に x の二乗が代入されます。）
-- 例: z ← 二乗 (x) ＋ べき乗 (x，y) （z に x の二乗と x の y 乗の和が代入されます。）
-- 例: r ← 乱数 (1，6) （r に 1 から 6 までの整数のうちいずれかが代入されます。）
+- Example: y ← 二乗 (x) (The square of x is assigned to y.)
+- Example: z ← 二乗 (x) ＋ べき乗 (x，y) (The sum of the square of x and x raised to the power of y is assigned to z.)
+- Example: r ← 乱数 (1，6) (One of the integers from 1 to 6 is assigned to r.)
 
-### 6.2 値を返さない関数
+### 6.2 Functions that Do Not Return a Value
 
-問題文の中で
+In the problem statement,
 
-- 指定された値を 2 進表現で表示する関数「二進で表示する」を用意する
+- Provide a function 「二進で表示する」 that displays the specified value in binary representation
 
-のように値を返さない関数が定義されることがあります。
+functions that do not return a value may be defined as above.
 
-- 例: 二進で表示する (11) （「1011」と表示されます。）
+- Example: 二進で表示する (11) (「1011」 is displayed.)
 
-## 7 新しい関数の定義
+## 7 Defining New Functions
 
-新しい関数の定義は，DNCL を用いて次のように記述します。
+The definition of a new function is written using DNCL as follows.
 
-《一般形》
+《General Form》
 ```
 関数 〈関数名〉 ( 〈引数列〉 ) を
   〈処理〉
 と定義する
 ```
 
-関数が呼び出される時に引数として与えられる値は、引数列のところに書いた変数名で利用します。複数の引数を指定する場合は，『，』で区切ります。定義した関数は，用意された関数の呼び出し（6 節）と同じ記法で呼び出すことができます。
+The values provided as arguments when the function is called are used via the variable names written in the argument list. When specifying multiple arguments, they are separated by `,`. The defined function can be called using the same notation as calling provided functions (Section 6).
 
-- 例: 1 から正の整数 n までの和を表示する関数「和を表示する (n)」の定義例
+- Example: An example definition of the function "和を表示する (n)" that displays the sum from 1 to a positive integer n.
 
 ```
 関数 和を表示する (n) を
@@ -350,7 +352,7 @@ x を 10 から 1 まで 1 ずつ減らしながら，
 と定義する
 ```
 
-- 例: 値 m の n 乗の値を表示する関数「べき乗を表示する (m，n)」の定義例
+- Example: An example definition of the function "べき乗を表示する (m，n)" that displays the value of m to the power of n.
 
 ```
 関数 べき乗を表示する (m，n) を
@@ -364,4 +366,4 @@ x を 10 から 1 まで 1 ずつ減らしながら，
 
 ## reference
 
-- [共通テスト手順記述標準言語 (DNCL) の説明 独立行政法人大学入試センター 2022年1月](https://www.dnc.ac.jp/albums/abm.php?d=67&f=abm00000819.pdf&n=R4_%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E6%89%8B%E9%A0%86%E8%A8%98%E8%BF%B0%E6%A8%99%E6%BA%96%E8%A8%80%E8%AA%9E%EF%BC%88DNCL%EF%BC%89%E3%81%AE%E8%AA%AC%E6%98%8E.pdf)
+- [Explanation of the Common Test Standard Language for Procedure Description (DNCL), National Center for University Entrance Examinations, January 2022](https://www.dnc.ac.jp/albums/abm.php?d=67&f=abm00000819.pdf&n=R4_%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E6%89%8B%E9%A0%86%E8%A8%98%E8%BF%B0%E6%A8%99%E6%BA%96%E8%A8%80%E8%AA%9E%EF%BC%88DNCL%EF%BC%89%E3%81%AE%E8%AA%AC%E6%98%8E.pdf)
